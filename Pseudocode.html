@@ -1,0 +1,31 @@
+<!-- *~----------------- Pseudo Code -----------------~*
+
+1. Set up play space (Let HTML and CSS create game space) 
+    a. Create place reset and 'War' buttons to handle resetting and playing cards. 
+    a. Initialize deck 
+        - shuffle deck with shuffle function
+    b. Use 'Deal' function to distribute shuffled deck into 2 new arrays (Creates 2 new array objects)
+        - *Or create new random array from shuffled deck and relabel remaining cards as p2Deck
+
+2. Allow player(s) to click on "war" to start the game  
+    a. on click the war button will initial several functions.
+        - First, grab a random card from each of the two arrays
+        - Insert new array item into play field on corresponding side
+        - Compare choices function will run to compare values
+            ~ If choices are exact same, ---  #4.
+        - Win condition checked for round played    
+        - cards played are then stored in playedCards array
+        - Player with higher card is given +1 value to points
+
+3. After each round is played, value of two deck arrays are checked.
+    a. Once both arrays return empty
+    b. Player points are checked
+        - Higher points will be declared winner
+        - Then promopted to reset to play again
+
+4. If cards are identical, proceed with tie function 
+    a. Tie function inserts 3 random cards from each of the two deck arrays into cardsPLayed array
+    b. Tie function then runs draw function to simulate the last card being played 
+        - this function essentially gets rid of the facedown cards being played, discarding them from both decks 
+     -->
+
