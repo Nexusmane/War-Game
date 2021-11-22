@@ -1,12 +1,63 @@
 .container {
     font-family: sans-serif, verdana;
     display: grid;
-    grid-template-columns: 20vmin 20vmin 20vmin 20vmin;
-    grid-template-rows: 30vmin 15vmin 25vmin;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: 30vmin 10vmin;
+    grid-template-areas:
+        "a . b"
+        ". c .";
+}
+
+.p1score {
+    grid-area: a;
+}
+
+.p2score {
+    grid-area: b;
+    text-align: right;
+}
+
+h3 {
+    margin: 0 auto;
+}
+
+#p1-points, #p2-points {
+    text-align: center;
 }
 
 body {
     justify-content: center;
     align-items: center;
-    /* display: flex; */
+    background: lightskyblue;
 }
+
+button {
+    height: 3vmin;
+    width: 14vmin;
+    font-size: 2vmin;
+    border-radius: 2vmin;
+    background: rgb(17, 0, 128);
+    color: white;
+    border: 1px solid black;
+    grid-area: c;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+button:hover {
+    background:rgb(109, 1, 1);
+    border: 2px solid white;
+}
+
+.instruction {
+    max-width: 40%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    font-size: 4vmin;
+}
+
+
