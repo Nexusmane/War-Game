@@ -1,0 +1,12 @@
+.container {
+    font-family: sans-serif, verdana;
+    display: grid;
+    grid-template-columns: 20vmin 20vmin 20vmin 20vmin;
+    grid-template-rows: 30vmin 15vmin 25vmin;
+}
+
+body {
+    justify-content: center;
+    align-items: center;
+    /* display: flex; */
+}

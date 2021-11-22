@@ -10,14 +10,14 @@ renderDeckInContainer(masterDeck, document.getElementById('master-deck-container
 let shuffledDeck, p1Hand, p2hand;
 
 function init() {
-  shuffledDeck( = getNewShuffledDeck;
-  p1Hand = [shuffledDeck.pop(); // Adds one card into player 1's hand
+  shuffledDeck = getNewShuffledDeck;
+  p1Hand = shuffledDeck.pop() // Adds one card into player 1's hand
   render();
 }
 
 function render() {
   // render the variables (duh)
-  let cardTemplate = `<div class"class ${p1Hand[0]0.face}"></div>`;
+  let cardTemplate = `<div class"class ${p1Hand[0].face}"></div>`;
   someEl.innerHTML = cardTemplate
 }
 /*----- cached element references -----*/
