@@ -7,14 +7,13 @@ const faceCardValue = {
     'K': 13,
     'A': 14
 };
-
+const masterDeck = buildMasterDeck();
 
 /*----- app's state (variables) -----*/
 
-let masterDeck, shuffledDeck, p1Deck, p2Deck, discardDeck;
+let shuffledDeck, p1Deck, p2Deck, discardDeck;
 let p1Points, p2Points;
 let winCondition, warCondition;
-
 
 
 /*----- cached element references -----*/
@@ -30,11 +29,9 @@ document.querySelector('.play').addEventListener('click', play);
 document.querySelector('.reset').addEventListener('click', reset);
 
 
-
 /*----- functions -----*/
 
 function init() {
-    shuffledDeck = [];
     p1Deck = [];
     p2Deck =[];
     discardDeck = [];
@@ -42,21 +39,28 @@ function init() {
     p2Points = 0;
     winCondition = null;
     warCondition = null;
+    buildMasterDeck();
+    cardDistribution();
     render();
 };
 
-function shuffleDeck() {
+init();
+
+function cardDistribution() {
+    let newDeck = getNewShuffledDeck();
+    p1Deck = newDeck.splice(0, 26);
+    p2Deck = newDeck;
 };
 
 function play() {
-    console.log("Play button works");
+    
 };
 
 function war(){
 };
 
 function reset() {
-    console.log("Reset button works");
+    init();
 };
 
 function render() {
@@ -79,24 +83,35 @@ function buildMasterDeck() {
     return deck;
   }
 
-
+  function getNewShuffledDeck() {
+    // Create a copy of the masterDeck (leave masterDeck untouched!)
+    const tempDeck = [...masterDeck];
+    const newShuffledDeck = [];
+    while (tempDeck.length) {
+      // Get a random index for a card still in the tempDeck
+      const rndIdx = Math.floor(Math.random() * tempDeck.length);
+      // Note the [0] after splice - this is because splice always returns an array and we just want the card object in that array
+      newShuffledDeck.push(tempDeck.splice(rndIdx, 1)[0]);
+    }
+    return newShuffledDeck;
+  };
 
 ///////////////////////////////////////////////////////////////
 //*------- Constants --------*// 
-const masterDeck = buildMasterDeck();
+
 
 
 // Build a 'master' deck of 'card' objects used to create shuffled decks
 renderDeckInContainer(masterDeck, document.getElementById('master-deck-container'));
 
 /*----- app's state (variables) -----*/
-let shuffledDeck, p1Hand, p2hand;
+// let shuffledDeck, p1Hand, p2hand;
 
-function init() {
-  shuffledDeck = getNewShuffledDeck;
-  p1Hand = shuffledDeck.pop() // Adds one card into player 1's hand
-  render();
-}
+// function init() {
+//   shuffledDeck = getNewShuffledDeck;
+// //   p1Hand = shuffledDeck.pop() // Adds one card into player 1's hand
+//   render();
+// }
 
 function render() {
   // render the variables (duh)
@@ -111,24 +126,12 @@ const shuffledContainer = document.getElementById('shuffled-deck-container');
 document.querySelector('button').addEventListener('click', renderNewShuffledDeck);
 
 /*----- functions -----*/
-function getNewShuffledDeck() {
-  // Create a copy of the masterDeck (leave masterDeck untouched!)
-  const tempDeck = [...masterDeck];
-  const newShuffledDeck = [];
-  while (tempDeck.length) {
-    // Get a random index for a card still in the tempDeck
-    const rndIdx = Math.floor(Math.random() * tempDeck.length);
-    // Note the [0] after splice - this is because splice always returns an array and we just want the card object in that array
-    newShuffledDeck.push(tempDeck.splice(rndIdx, 1)[0]);
-  }
-  return newShuffledDeck;
-}
 
-function renderNewShuffledDeck() {
-  // Create a copy of the masterDeck (leave masterDeck untouched!)
-  shuffledDeck = getNewShuffledDeck();
-  renderDeckInContainer(shuffledDeck, shuffledContainer);
-}
+// function renderNewShuffledDeck() {
+//   // Create a copy of the masterDeck (leave masterDeck untouched!)
+//   shuffledDeck = getNewShuffledDeck();
+//   renderDeckInContainer(shuffledDeck, shuffledContainer);
+// }
 
 function renderDeckInContainer(deck, container) {
   container.innerHTML = '';
@@ -145,4 +148,4 @@ function renderDeckInContainer(deck, container) {
 }
 
 
-renderNewShuffledDeck();
+// renderNewShuffledDeck();
