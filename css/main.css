@@ -1,11 +1,11 @@
 .container {
     font-family: sans-serif, verdana;
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
-    grid-template-rows: 35vmin 10vmin;
+    grid-template-columns: 1fr 2fr 2fr 1fr;
+    grid-template-rows: 55vmin 10vmin;
     grid-template-areas:
-        "a . b"
-        ". c .";
+        "a d e b"
+        ". c c .";
 }
 
 .p1score {
@@ -45,6 +45,7 @@ button {
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+    display: flex;
 }
 button:hover {
     background:rgb(109, 1, 1);
@@ -62,8 +63,19 @@ h1 {
     font-size: 4vmin;
 }
 
+.p1play {
+    grid-area: d;
+    align-items: right;
+}
+
+.p2play {
+    grid-area: e;
+    align-items: left;
+}
+
 svg {
     background: rgb(237, 237, 237);
+    margin: 0 auto;
 }
 
 
