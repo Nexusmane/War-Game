@@ -2,7 +2,7 @@
     font-family: sans-serif, verdana;
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
-    grid-template-rows: 30vmin 10vmin;
+    grid-template-rows: 35vmin 10vmin;
     grid-template-areas:
         "a . b"
         ". c .";
@@ -17,12 +17,14 @@
     text-align: right;
 }
 
-h3 {
+.p1score, .p2score {
+    text-align: center;
     margin: 0 auto;
 }
 
 #p1-points, #p2-points {
     text-align: center;
+    padding: 5px 0 10px 0 ;
 }
 
 body {
@@ -58,6 +60,10 @@ button:hover {
 h1 {
     text-align: center;
     font-size: 4vmin;
+}
+
+svg {
+    background: rgb(237, 237, 237);
 }
 
 
