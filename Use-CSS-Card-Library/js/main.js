@@ -20,6 +20,7 @@ function render() {
   let cardTemplate = `<div class"class ${p1Hand[0].face}"></div>`;
   someEl.innerHTML = cardTemplate
 }
+
 /*----- cached element references -----*/
 const shuffledContainer = document.getElementById('shuffled-deck-container');
 

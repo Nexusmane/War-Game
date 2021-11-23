@@ -1,8 +1,6 @@
 /*----- constants -----*/
-
 const suits = ['s', 'c', 'd', 'h'];
 const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
-const masterDeck = buildMasterDeck();
 const faceCardValue = {
     'J': 11,
     'Q': 12,
@@ -10,18 +8,20 @@ const faceCardValue = {
     'A': 14
 };
 
+
 /*----- app's state (variables) -----*/
 
-let shuffledDeck, p1Deck, p2Deck, discardDeck = [];
-let p1Points ,p2Points = 0;
-let winCondition, warCondition = null;
+let masterDeck, shuffledDeck, p1Deck, p2Deck, discardDeck;
+let p1Points, p2Points;
+let winCondition, warCondition;
 
 
 
 /*----- cached element references -----*/
-
-const shuffledContainer = document.getElementById('shuffled-deck-container');
-
+let pointEls = {
+    p1: document.getElementById('p1-points'),
+    p2: document.getElementById('p2-points'),
+};
 
 
 /*----- event listeners -----*/
@@ -62,42 +62,8 @@ function reset() {
 function render() {
 };
 
-///////////////////////////////////////////////////////////////
 
-function getNewShuffledDeck() {
-    // Create a copy of the masterDeck (leave masterDeck untouched!)
-    const tempDeck = [...masterDeck];
-    const newShuffledDeck = [];
-    while (tempDeck.length) {
-      // Get a random index for a card still in the tempDeck
-      const rndIdx = Math.floor(Math.random() * tempDeck.length);
-      // Note the [0] after splice - this is because splice always returns an array and we just want the card object in that array
-      newShuffledDeck.push(tempDeck.splice(rndIdx, 1)[0]);
-    }
-    return newShuffledDeck;
-  }
-  
-  function renderNewShuffledDeck() {
-    // Create a copy of the masterDeck (leave masterDeck untouched!)
-    shuffledDeck = getNewShuffledDeck();
-    renderDeckInContainer(shuffledDeck, shuffledContainer);
-  }
-  
-  function renderDeckInContainer(deck, container) {
-    container.innerHTML = '';
-    // Let's build the cards as a string of HTML
-    let cardsHtml = '';
-    deck.forEach(function(card) {
-      cardsHtml += `<div class="card ${card.face}"></div>`;
-    });
-    // Or, use reduce to 'reduce' the array into a single thing - in this case a string of HTML markup 
-    // const cardsHtml = deck.reduce(function(html, card) {
-    //   return html + `<div class="card ${card.face}"></div>`;
-    // }, '');
-    container.innerHTML = cardsHtml;
-  }
-  
-  function buildMasterDeck() {
+function buildMasterDeck() {
     const deck = [];
     // Use nested forEach to generate card objects
     suits.forEach(function(suit) {
@@ -112,5 +78,71 @@ function getNewShuffledDeck() {
     });
     return deck;
   }
-  
-  renderNewShuffledDeck();
+
+
+
+///////////////////////////////////////////////////////////////
+//*------- Constants --------*// 
+const masterDeck = buildMasterDeck();
+
+
+// Build a 'master' deck of 'card' objects used to create shuffled decks
+renderDeckInContainer(masterDeck, document.getElementById('master-deck-container'));
+
+/*----- app's state (variables) -----*/
+let shuffledDeck, p1Hand, p2hand;
+
+function init() {
+  shuffledDeck = getNewShuffledDeck;
+  p1Hand = shuffledDeck.pop() // Adds one card into player 1's hand
+  render();
+}
+
+function render() {
+  // render the variables (duh)
+  let cardTemplate = `<div class"class ${p1Hand[0].face}"></div>`;
+  someEl.innerHTML = cardTemplate
+}
+
+/*----- cached element references -----*/
+const shuffledContainer = document.getElementById('shuffled-deck-container');
+
+/*----- event listeners -----*/
+document.querySelector('button').addEventListener('click', renderNewShuffledDeck);
+
+/*----- functions -----*/
+function getNewShuffledDeck() {
+  // Create a copy of the masterDeck (leave masterDeck untouched!)
+  const tempDeck = [...masterDeck];
+  const newShuffledDeck = [];
+  while (tempDeck.length) {
+    // Get a random index for a card still in the tempDeck
+    const rndIdx = Math.floor(Math.random() * tempDeck.length);
+    // Note the [0] after splice - this is because splice always returns an array and we just want the card object in that array
+    newShuffledDeck.push(tempDeck.splice(rndIdx, 1)[0]);
+  }
+  return newShuffledDeck;
+}
+
+function renderNewShuffledDeck() {
+  // Create a copy of the masterDeck (leave masterDeck untouched!)
+  shuffledDeck = getNewShuffledDeck();
+  renderDeckInContainer(shuffledDeck, shuffledContainer);
+}
+
+function renderDeckInContainer(deck, container) {
+  container.innerHTML = '';
+  // Let's build the cards as a string of HTML
+  let cardsHtml = '';
+  deck.forEach(function(card) {
+    cardsHtml += `<div class="card ${card.face}"></div>`;
+  });
+  // Or, use reduce to 'reduce' the array into a single thing - in this case a string of HTML markup 
+  // const cardsHtml = deck.reduce(function(html, card) {
+  //   return html + `<div class="card ${card.face}"></div>`;
+  // }, '');
+  container.innerHTML = cardsHtml;
+}
+
+
+renderNewShuffledDeck();
