@@ -53,7 +53,20 @@ function cardDistribution() {
 };
 
 function play() {
-    
+    let p1Card = 0;
+    let p2Card = 0;
+
+
+};
+
+function compareCards(a, b) {
+    if (a === b)
+    else if (p1Card > p2Card) {
+    p1Points++ 
+    } else if {
+        p2Points++
+        }
+    }
 };
 
 function war(){

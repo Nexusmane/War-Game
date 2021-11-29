@@ -6,6 +6,7 @@
     grid-template-areas:
         "a d e b"
         ". c . .";
+    padding: 50px 0 0 0;
 }
 
 .p1score {
@@ -20,6 +21,7 @@
 .p1score, .p2score {
     text-align: center;
     margin: 0 auto;
+    text-decoration: underline;
 }
 
 #p1-points, #p2-points {
@@ -79,4 +81,7 @@ svg {
     margin: 0 auto;
 }
 
-
+.buttons {
+    display: flex;
+    justify-content: center;
+}
