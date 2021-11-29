@@ -15,13 +15,13 @@ let shuffledDeck, p1Deck, p2Deck, discardDeck;
 let p1Points, p2Points;
 let winCondition, warCondition;
 
-
 /*----- cached element references -----*/
 let pointEls = {
     p1: document.getElementById('p1-points'),
     p2: document.getElementById('p2-points'),
 };
 
+let messageEl = document.getElementById('roundResult');
 
 /*----- event listeners -----*/
 
@@ -55,22 +55,51 @@ function cardDistribution() {
 function play() {
     let p1Card = 0;
     let p2Card = 0;
-
-
+    // grab a card from the respective decks
+    // put into discard pile array/deck
+    // Grab the corresponding picture from the deck to show what was played
+    // 
+    compareCards();
+    checkFinalScore();
+    render();
 };
 
 function compareCards(a, b) {
-    if (a === b)
-    else if (p1Card > p2Card) {
-    p1Points++ 
-    } else if {
-        p2Points++
-        }
+    if (a === b) {
+        messageEl.innerHTML = "It's a tie, time for war!"
+        war();
+    } else if (a > b) {
+        p1Points++; 
+        pointEls.p1.innerHTML = p1Points;
+        messageEl.innerHTML = "Player 1 wins this round!";
+    } else {
+        p2Points++;
+        pointEls.p2.innerHTML = p2Points;
+        messageEl.innerHTML = "Player 2 wins this round!";
+    }
+};
+
+function compareWar(a, b) {
+    if (a === b) {
+        messageEl.innerHTML = "It's a tie, time for another war!"
+        war();
+    } else if (a > b) {
+        p1Points + 4; 
+        pointEls.p1.innerHTML = p1Points;
+        messageEl.innerHTML = "Player 1 wins the War!";
+    } else {
+        p2Points + 4;
+        pointEls.p2.innerHTML = p2Points;
+        messageEl.innerHTML = "Player 2 wins the War!";
     }
 };
 
 function war(){
+    // remove 3 cards from each array and place in discard 
+    // pick 4th card and play 
+    compareWar();
 };
+
 
 function reset() {
     init();
@@ -79,6 +108,12 @@ function reset() {
 function render() {
 };
 
+checkFinalScore(); {
+    if (p1Points > p2Points) {
+    messageEl.innerHTML = "Congratulations! Player 1 has triumphed and won the match!"
+    } else 
+    messageEl.innerHTML = "Congratulations! Player 2 has fought brilliantly and won the duel!"
+};
 
 function buildMasterDeck() {
     const deck = [];
@@ -89,7 +124,7 @@ function buildMasterDeck() {
           // The 'face' property maps to the library's CSS classes for cards
           face: `${suit}${rank}`,
           // Setting the 'value' property for game of blackjack, not war
-          value: Number(rank) || (rank === 'A' ? 11 : 10)
+          value: Number(rank) || faceCardValue[rank]
         });
       });
     });
@@ -136,7 +171,7 @@ function render() {
 const shuffledContainer = document.getElementById('shuffled-deck-container');
 
 /*----- event listeners -----*/
-document.querySelector('button').addEventListener('click', renderNewShuffledDeck);
+// document.querySelector('button').addEventListener('click', renderNewShuffledDeck);
 
 /*----- functions -----*/
 

@@ -2,10 +2,9 @@
     font-family: sans-serif, verdana;
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 1fr;
-    grid-template-rows: 55vmin 10vmin;
+    grid-template-rows: 55vmin;
     grid-template-areas:
-        "a d e b"
-        ". c . .";
+        "a d e b";
     padding: 50px 0 0 0;
 }
 
@@ -59,6 +58,7 @@ button:hover {
     max-width: 40%;
     text-align: center;
     margin: 0 auto;
+    padding: 30px 0 0 0;
 }
 
 h1 {
@@ -84,4 +84,5 @@ svg {
 .buttons {
     display: flex;
     justify-content: center;
+    padding: 50px 0 0 0;
 }
