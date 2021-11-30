@@ -66,14 +66,10 @@ h1 {
     font-size: 4vmin;
 }
 
-.p1play {
-    grid-area: d;
-    align-items: right;
-}
-
-.p2play {
-    grid-area: e;
-    align-items: left;
+#p1, #p2 {
+    margin: 0 auto;
+    width: 25vmin;
+    height: 35vmin;
 }
 
 svg {
