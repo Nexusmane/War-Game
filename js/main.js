@@ -21,7 +21,7 @@ let pointEls = {
     p2: document.getElementById('p2-points'),
 };
 
-let messageEl = document.getElementById('roundResult');
+let messageEl = document.querySelector('.roundResult');
 
 /*----- event listeners -----*/
 
@@ -50,53 +50,62 @@ function cardDistribution() {
     let newDeck = getNewShuffledDeck();
     p1Deck = newDeck.splice(0, 26);
     p2Deck = newDeck;
+    console.log(p1Deck)
+    console.log(p2Deck)
 };
 
 function play() {
     let p1Card = 0;
     let p2Card = 0;
+    p1Card = p1Deck.pop();
+    p2Card = p2Deck.pop();
+    compareCards(p1Card.value, p2Card.value);
     // grab a card from the respective decks
     // put into discard pile array/deck
     // Grab the corresponding picture from the deck to show what was played
-    // 
-    compareCards();
     checkFinalScore();
     render();
 };
 
 function compareCards(a, b) {
+    console.log(a);
+    console.log(b);
     if (a === b) {
-        messageEl.innerHTML = "It's a tie, time for war!"
+        messageEl.innerText = "It's a tie, time for war!"
         war();
     } else if (a > b) {
+        messageEl.innerText = "Player 1 wins this round!";
         p1Points++; 
-        pointEls.p1.innerHTML = p1Points;
-        messageEl.innerHTML = "Player 1 wins this round!";
+        pointEls.p1.innerText = p1Points;
     } else {
+        messageEl.innerText = "Player 2 wins this round!";
         p2Points++;
-        pointEls.p2.innerHTML = p2Points;
-        messageEl.innerHTML = "Player 2 wins this round!";
+        pointEls.p2.innerText = p2Points;
     }
 };
 
 function compareWar(a, b) {
     if (a === b) {
-        messageEl.innerHTML = "It's a tie, time for another war!"
+        messageEl.innerText = "It's a tie, time for another war!"
         war();
     } else if (a > b) {
         p1Points + 4; 
-        pointEls.p1.innerHTML = p1Points;
-        messageEl.innerHTML = "Player 1 wins the War!";
+        pointEls.p1.innerText = p1Points;
+        messageEl.innerText = "Player 1 wins the War!";
     } else {
         p2Points + 4;
-        pointEls.p2.innerHTML = p2Points;
-        messageEl.innerHTML = "Player 2 wins the War!";
+        pointEls.p2.innerText = p2Points;
+        messageEl.innerText = "Player 2 wins the War!";
     }
 };
 
 function war(){
     // remove 3 cards from each array and place in discard 
     // pick 4th card and play 
+    let p1Card = 0;
+    let p2Card = 0;
+    p1Card = p1Deck.pop();
+    p2Card = p2Deck.pop();
     compareWar();
 };
 
@@ -108,11 +117,18 @@ function reset() {
 function render() {
 };
 
-checkFinalScore(); {
+function checkFinalScore() {
+    if (discardDeck.length === 52) {
+        winMessage();
+    }
+};
+
+function winMessage() {
     if (p1Points > p2Points) {
-    messageEl.innerHTML = "Congratulations! Player 1 has triumphed and won the match!"
-    } else 
-    messageEl.innerHTML = "Congratulations! Player 2 has fought brilliantly and won the duel!"
+        messageEl.innerText = "Congratulations! Player 1 has triumphed and won the match!";
+        } else {
+        messageEl.innerText = "Congratulations! Player 2 has fought brilliantly and won the duel!";
+    }
 };
 
 function buildMasterDeck() {
@@ -150,7 +166,7 @@ function buildMasterDeck() {
 
 
 // Build a 'master' deck of 'card' objects used to create shuffled decks
-renderDeckInContainer(masterDeck, document.getElementById('master-deck-container'));
+// renderDeckInContainer(masterDeck, document.getElementById('master-deck-container'));
 
 /*----- app's state (variables) -----*/
 // let shuffledDeck, p1Hand, p2hand;
@@ -161,14 +177,14 @@ renderDeckInContainer(masterDeck, document.getElementById('master-deck-container
 //   render();
 // }
 
-function render() {
-  // render the variables (duh)
-  let cardTemplate = `<div class"class ${p1Hand[0].face}"></div>`;
-  someEl.innerHTML = cardTemplate
-}
+// function render() {
+//   // render the variables (duh)
+//   let cardTemplate = `<div class"class ${p1Hand[0].face}"></div>`;
+//   someEl.innerHTML = cardTemplate
+// }
 
 /*----- cached element references -----*/
-const shuffledContainer = document.getElementById('shuffled-deck-container');
+// const shuffledContainer = document.getElementById('shuffled-deck-container');
 
 /*----- event listeners -----*/
 // document.querySelector('button').addEventListener('click', renderNewShuffledDeck);
@@ -181,19 +197,19 @@ const shuffledContainer = document.getElementById('shuffled-deck-container');
 //   renderDeckInContainer(shuffledDeck, shuffledContainer);
 // }
 
-function renderDeckInContainer(deck, container) {
-  container.innerHTML = '';
-  // Let's build the cards as a string of HTML
-  let cardsHtml = '';
-  deck.forEach(function(card) {
-    cardsHtml += `<div class="card ${card.face}"></div>`;
-  });
-  // Or, use reduce to 'reduce' the array into a single thing - in this case a string of HTML markup 
-  // const cardsHtml = deck.reduce(function(html, card) {
-  //   return html + `<div class="card ${card.face}"></div>`;
-  // }, '');
-  container.innerHTML = cardsHtml;
-}
+// function renderDeckInContainer(deck, container) {
+//   container.innerHTML = '';
+//   // Let's build the cards as a string of HTML
+//   let cardsHtml = '';
+//   deck.forEach(function(card) {
+//     cardsHtml += `<div class="card ${card.face}"></div>`;
+//   });
+//   // Or, use reduce to 'reduce' the array into a single thing - in this case a string of HTML markup 
+//   // const cardsHtml = deck.reduce(function(html, card) {
+//   //   return html + `<div class="card ${card.face}"></div>`;
+//   // }, '');
+//   container.innerHTML = cardsHtml;
+// }
 
 
 // renderNewShuffledDeck();
