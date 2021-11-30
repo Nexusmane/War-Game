@@ -131,10 +131,12 @@ function reset() {
     document.getElementById('p2-points').innerText = 0;
     document.getElementById('p1').className = null;
     document.getElementById('p2').className = null;
+    messageEl.innerText = "The results will be displayed here!"
+
 };
 
 function checkFinalScore() {
-    if (discardDeck.length === 52) {
+    if (discardDeck.length >= 52) {
         winMessage();
     }
 };
