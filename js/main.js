@@ -61,8 +61,8 @@ function play() {
     compareCards(p1Card.value, p2Card.value);
     // put into discard pile array/deck
     // Grab the corresponding picture from the deck to show what was played
-    // document.getElementById('p1').className = `card ${p1Card.face}`; ?
-    // document.getElementById('p2').className = `card ${p2Card.face}`; ?
+    document.getElementById('p1').className = `card ${p1Card.face}`; // double check if correct
+    document.getElementById('p2').className = `card ${p2Card.face}`; // double check if correct
     checkFinalScore();
     render();
 };
