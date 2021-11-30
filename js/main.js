@@ -1,4 +1,5 @@
 /*----- constants -----*/
+
 const suits = ['s', 'c', 'd', 'h'];
 const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
 const faceCardValue = {
@@ -7,6 +8,7 @@ const faceCardValue = {
     'K': 13,
     'A': 14
 };
+
 const masterDeck = buildMasterDeck();
 
 /*----- app's state (variables) -----*/
@@ -16,6 +18,7 @@ let p1Points, p2Points;
 let winCondition, warCondition;
 
 /*----- cached element references -----*/
+
 let pointEls = {
     p1: document.getElementById('p1-points'),
     p2: document.getElementById('p2-points'),
@@ -114,6 +117,7 @@ function discardP1War() {
     for (let i = 0; i < 3; i++) {
         discardDeck.push(p1Deck[i]);
         p1Deck.splice(i, 1);
+    }
 };
 
 function discardP2() {
@@ -123,7 +127,8 @@ function discardP2() {
 function discardP2War() {
     for (let i = 0; i < 3; i++) {
         discardDeck.push(p2Deck[i]);
-        p2Deck.splice(i, 1);
+        p2Deck.splice(i, 1); 
+    }
 };
 
 function reset() {
@@ -178,4 +183,3 @@ function buildMasterDeck() {
   };
 
   init();
-  render();
