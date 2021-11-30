@@ -33,7 +33,7 @@ document.querySelector('.reset').addEventListener('click', reset);
 
 function init() {
     p1Deck = [];
-    p2Deck =[];
+    p2Deck = [];
     discardDeck = [];
     p1Points = 0;
     p2Points = 0;
@@ -44,14 +44,10 @@ function init() {
     render();
 };
 
-init();
-
 function cardDistribution() {
     let newDeck = getNewShuffledDeck();
     p1Deck = newDeck.splice(0, 26);
     p2Deck = newDeck;
-    console.log(p1Deck)
-    console.log(p2Deck)
 };
 
 function play() {
@@ -60,27 +56,28 @@ function play() {
     p1Card = p1Deck.pop();
     p2Card = p2Deck.pop();
     compareCards(p1Card.value, p2Card.value);
-    // grab a card from the respective decks
     // put into discard pile array/deck
     // Grab the corresponding picture from the deck to show what was played
+    // document.getElementById('p1').className = `card ${p1Card.face}`; ?
+    // document.getElementById('p2').className = `card ${p2Card.face}`; ?
     checkFinalScore();
     render();
 };
 
 function compareCards(a, b) {
-    console.log(a);
-    console.log(b);
+    console.log(a); // Don't forget to remove
+    console.log(b); // Don't forget to remove
     if (a === b) {
         messageEl.innerText = "It's a tie, time for war!"
         war();
     } else if (a > b) {
-        messageEl.innerText = "Player 1 wins this round!";
         p1Points++; 
         pointEls.p1.innerText = p1Points;
+        messageEl.innerText = "Player 1 wins this round!";
     } else {
-        messageEl.innerText = "Player 2 wins this round!";
         p2Points++;
         pointEls.p2.innerText = p2Points;
+        messageEl.innerText = "Player 2 wins this round!";
     }
 };
 
@@ -99,7 +96,7 @@ function compareWar(a, b) {
     }
 };
 
-function war(){
+function war() {
     // remove 3 cards from each array and place in discard 
     // pick 4th card and play 
     let p1Card = 0;
@@ -141,6 +138,7 @@ function buildMasterDeck() {
           face: `${suit}${rank}`,
           // Setting the 'value' property for game of blackjack, not war
           value: Number(rank) || faceCardValue[rank]
+          // Change second part to adjust face cards to a number
         });
       });
     });
@@ -160,56 +158,5 @@ function buildMasterDeck() {
     return newShuffledDeck;
   };
 
-///////////////////////////////////////////////////////////////
-//*------- Constants --------*// 
-
-
-
-// Build a 'master' deck of 'card' objects used to create shuffled decks
-// renderDeckInContainer(masterDeck, document.getElementById('master-deck-container'));
-
-/*----- app's state (variables) -----*/
-// let shuffledDeck, p1Hand, p2hand;
-
-// function init() {
-//   shuffledDeck = getNewShuffledDeck;
-// //   p1Hand = shuffledDeck.pop() // Adds one card into player 1's hand
-//   render();
-// }
-
-// function render() {
-//   // render the variables (duh)
-//   let cardTemplate = `<div class"class ${p1Hand[0].face}"></div>`;
-//   someEl.innerHTML = cardTemplate
-// }
-
-/*----- cached element references -----*/
-// const shuffledContainer = document.getElementById('shuffled-deck-container');
-
-/*----- event listeners -----*/
-// document.querySelector('button').addEventListener('click', renderNewShuffledDeck);
-
-/*----- functions -----*/
-
-// function renderNewShuffledDeck() {
-//   // Create a copy of the masterDeck (leave masterDeck untouched!)
-//   shuffledDeck = getNewShuffledDeck();
-//   renderDeckInContainer(shuffledDeck, shuffledContainer);
-// }
-
-// function renderDeckInContainer(deck, container) {
-//   container.innerHTML = '';
-//   // Let's build the cards as a string of HTML
-//   let cardsHtml = '';
-//   deck.forEach(function(card) {
-//     cardsHtml += `<div class="card ${card.face}"></div>`;
-//   });
-//   // Or, use reduce to 'reduce' the array into a single thing - in this case a string of HTML markup 
-//   // const cardsHtml = deck.reduce(function(html, card) {
-//   //   return html + `<div class="card ${card.face}"></div>`;
-//   // }, '');
-//   container.innerHTML = cardsHtml;
-// }
-
-
-// renderNewShuffledDeck();
+  init();
+  render();
