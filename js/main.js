@@ -97,8 +97,8 @@ function compareWar(a, b) {
 };
 
 function war() {
-    // remove 3 cards from each array and place in discard 
-    // pick 4th card and play 
+    discardP1War();
+    discardP2War();
     let p1Card = 0;
     let p2Card = 0;
     p1Card = p1Deck.pop();
@@ -106,6 +106,25 @@ function war() {
     compareWar();
 };
 
+function discardP1() {
+
+};
+
+function discardP1War() {
+    for (let i = 0; i < 3; i++) {
+        discardDeck.push(p1Deck[i]);
+        p1Deck.splice(i, 1);
+};
+
+function discardP2() {
+
+};
+
+function discardP2War() {
+    for (let i = 0; i < 3; i++) {
+        discardDeck.push(p2Deck[i]);
+        p2Deck.splice(i, 1);
+};
 
 function reset() {
     init();
