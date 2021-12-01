@@ -1,5 +1,4 @@
 /*----- constants -----*/
-
 const suits = ['s', 'c', 'd', 'h'];
 const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
 const faceCardValue = {
@@ -8,17 +7,14 @@ const faceCardValue = {
     'K': 13,
     'A': 14
 };
-
 const masterDeck = buildMasterDeck();
 
 /*----- app's state (variables) -----*/
-
 let shuffledDeck, p1Deck, p2Deck, discardDeck;
 let p1Points, p2Points;
 let winCondition, warCondition;
 
 /*----- cached element references -----*/
-
 let pointEls = {
     p1: document.getElementById('p1-points'),
     p2: document.getElementById('p2-points'),
@@ -27,13 +23,11 @@ let pointEls = {
 let messageEl = document.querySelector('.roundResult');
 
 /*----- event listeners -----*/
-
 document.querySelector('.play').addEventListener('click', play);
 document.querySelector('.reset').addEventListener('click', reset);
 
 
 /*----- functions -----*/
-
 function init() {
     p1Deck = [];
     p2Deck = [];
@@ -65,12 +59,9 @@ function play() {
     document.getElementById('p1').className = `card ${p1Card.face}`;
     document.getElementById('p2').className = `card ${p2Card.face}`;
     discardDeck.push(p1Card, p2Card);
-    console.log(discardDeck);
 };
 
 function compareCards(a, b) {
-    console.log(a);
-    console.log(b);
     if (a === b) {
         messageEl.innerText = "It's a tie, time for war!"
         war(a, b);
