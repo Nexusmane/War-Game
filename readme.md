@@ -20,7 +20,7 @@ This game is something I played a lot as a child, as it's very simple and quick.
 3. CSS - for styling and a more specific layout
 
 
-## Rules of the game/Getting Started
+## Rules of the Game/Getting Started - Click [Here](https://nexusmane.github.io/War-Game/) to Launch Game.
 
 ### The rules are as follows:
 
